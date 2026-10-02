@@ -1,19 +1,29 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ShieldCheck, Cpu, HeartPulse, Sparkles, CheckCircle2 } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { CheckCircle2 } from 'lucide-react';
 import { content } from '../data/content';
-
-const iconMap = {
-  ShieldCheck,
-  Cpu,
-  HeartPulse,
-  Sparkles,
-};
+import { DNADualCanvas } from './DNACanvas';
 
 export const MissionVision: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: false, margin: '200px' });
+
   return (
-    <section id="mission-vision" className="relative py-20 lg:py-28 bg-white">
-      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
+    <section ref={sectionRef} id="mission-vision" className="relative py-20 lg:py-28 bg-[#FAFAFA]">
+      {/* DNA models — rendered symmetrically with zero-lag frameloop throttling */}
+      <div
+        className={`hidden xl:block absolute inset-0 pointer-events-none transition-opacity duration-500 ${
+          isInView ? 'opacity-70' : 'opacity-0'
+        }`}
+        style={{
+          maskImage: 'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
+        }}
+      >
+        <DNADualCanvas active={isInView} />
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
         {/* Section Header */}
         <div className="max-w-2xl mb-14">
           <p className="text-base font-medium text-sky-600 mb-3">
@@ -35,7 +45,7 @@ export const MissionVision: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.5 }}
-            className="rounded-2xl p-8 lg:p-10 bg-[#f8fafc] border border-slate-200/80"
+            className="rounded-2xl p-8 lg:p-10 bg-white border border-slate-200/80 shadow-xs"
           >
             <h3 className="font-display font-bold text-2xl lg:text-3xl text-slate-900 mb-2">
               {content.missionVision.mission.title}
@@ -62,7 +72,7 @@ export const MissionVision: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="rounded-2xl p-8 lg:p-10 bg-[#f8fafc] border border-slate-200/80"
+            className="rounded-2xl p-8 lg:p-10 bg-white border border-slate-200/80 shadow-xs"
           >
             <h3 className="font-display font-bold text-2xl lg:text-3xl text-slate-900 mb-2">
               {content.missionVision.vision.title}
@@ -84,33 +94,8 @@ export const MissionVision: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Core Values */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {content.missionVision.coreValues.map((val, idx) => {
-            const IconComponent = iconMap[val.icon] || ShieldCheck;
-            return (
-              <motion.div
-                key={val.title}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.06 }}
-                className="p-6 rounded-xl bg-white border border-slate-200/80 hover:border-slate-300 transition-colors"
-              >
-                <div className="w-11 h-11 rounded-lg bg-slate-100 flex items-center justify-center text-slate-700 mb-4">
-                  <IconComponent className="w-5 h-5" />
-                </div>
-                <h4 className="font-display font-semibold text-lg text-slate-900 mb-2">
-                  {val.title}
-                </h4>
-                <p className="text-base text-slate-500 leading-relaxed">
-                  {val.description}
-                </p>
-              </motion.div>
-            );
-          })}
-        </div>
       </div>
     </section>
   );
 };
+

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { content } from '../data/content';
 import { HeroCanvas } from './HeroCanvas';
 
@@ -59,21 +59,10 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 w-full h-[400px] sm:h-[480px] lg:h-[560px] relative flex items-center justify-center"
+            className="lg:col-span-5 w-full h-[460px] sm:h-[540px] lg:h-[620px] relative flex items-center justify-center"
           >
             <HeroCanvas />
           </motion.div>
-        </div>
-
-        {/* Scroll Cue */}
-        <div className="pt-8 lg:pt-12">
-          <a
-            href="#mission-vision"
-            className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-slate-600 transition-colors"
-          >
-            <ArrowDown className="w-4 h-4 animate-bounce" />
-            <span>{content.hero.scrollCue}</span>
-          </a>
         </div>
       </div>
     </section>

@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle2, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle2, Linkedin } from 'lucide-react';
 import { content } from '../data/content';
 
+const TelegramIcon: React.FC<{ className?: string }> = ({ className = 'w-5 h-5' }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l-.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z" />
+  </svg>
+);
+
 const socialIconMap: Record<string, React.FC<{ className?: string }>> = {
-  Github, Linkedin, Twitter, Mail,
+  Linkedin,
+  Mail,
+  Telegram: TelegramIcon,
 };
 
 export const Contact: React.FC = () => {
@@ -107,8 +115,6 @@ export const Contact: React.FC = () => {
 
           {/* Contact Details */}
           <div className="lg:col-span-5 space-y-8">
-            <p className="text-base text-sky-600 font-medium">{content.contact.statusText}</p>
-
             <div className="space-y-6">
               {[
                 { icon: Mail, label: 'Email', value: content.contact.email, href: `mailto:${content.contact.email}`, isLink: true },

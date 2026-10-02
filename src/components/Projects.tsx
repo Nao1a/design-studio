@@ -4,55 +4,29 @@ import { content, Project } from '../data/content';
 import { ProjectModal } from './ProjectModal';
 
 export const Projects: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
-
-  const filteredProjects = selectedCategory === 'All'
-    ? content.projects.items
-    : content.projects.items.filter((p) => p.category === selectedCategory);
+  const projects = content.projects.items;
 
   return (
     <section id="projects" className="relative py-20 lg:py-28 bg-[#f8fafc]">
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div className="max-w-2xl">
-            <p className="text-base font-medium text-sky-600 mb-3">
-              {content.projects.badge}
-            </p>
-            <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight mb-4">
-              {content.projects.headline}
-            </h2>
-            <p className="text-lg text-slate-500 leading-relaxed">
-              {content.projects.subheadline}
-            </p>
-          </div>
-
-          {/* Filters */}
-          <div className="flex flex-wrap items-center gap-2 self-start md:self-auto">
-            {content.projects.categories.map((cat) => {
-              const isSelected = selectedCategory === cat;
-              return (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-5 py-2.5 text-sm font-medium rounded-lg transition-all ${
-                    isSelected
-                      ? 'bg-slate-900 text-white'
-                      : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:text-slate-900'
-                  }`}
-                >
-                  {cat}
-                </button>
-              );
-            })}
-          </div>
+        <div className="max-w-2xl mb-12">
+          <p className="text-base font-medium text-sky-600 mb-3">
+            {content.projects.badge}
+          </p>
+          <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight mb-4">
+            {content.projects.headline}
+          </h2>
+          <p className="text-lg text-slate-500 leading-relaxed">
+            {content.projects.subheadline}
+          </p>
         </div>
 
         {/* Cards */}
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
           <AnimatePresence>
-            {filteredProjects.map((project, idx) => (
+            {projects.map((project, idx) => (
               <motion.article
                 layout
                 key={project.id}

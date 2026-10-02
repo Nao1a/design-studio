@@ -4,9 +4,9 @@
 
 @layer base {
   :root {
-    --accent-blue: #0284c7;
-    --accent-light: #38bdf8;
-    --clinical-bg: #fbfcfd;
+    --accent-copper: #b8541c;
+    --accent-light: #dc9255;
+    --clinical-bg: #FAFAFA;
   }
 
   html {
@@ -15,7 +15,7 @@
   }
 
   body {
-    background-color: #fbfcfd;
+    background-color: #FAFAFA;
     color: #0f172a;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -24,8 +24,8 @@
   }
 
   ::selection {
-    background-color: rgba(2, 132, 199, 0.2);
-    color: #0369a1;
+    background-color: rgba(184, 84, 28, 0.2);
+    color: #923c12;
   }
 }
 
@@ -73,8 +73,8 @@
 }
 
 .clinical-card:hover {
-  border-color: rgba(56, 189, 248, 0.5);
-  box-shadow: 0 16px 36px -12px rgba(2, 132, 199, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+  border-color: rgba(220, 146, 85, 0.5);
+  box-shadow: 0 16px 36px -12px rgba(184, 84, 28, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
 }
 
 /* Typography Enhancements */
@@ -87,9 +87,9 @@
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* Gradient Text */
+/* Gradient Text — Between Orange & Brown (Warm Terracotta Copper) */
 .text-gradient {
-  background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #0369a1 100%);
+  background: linear-gradient(135deg, #d97706 0%, #b8541c 45%, #923c12 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -102,6 +102,6 @@
 
 /* Focus outline for accessibility */
 *:focus-visible {
-  outline: 2px solid #0284c7;
+  outline: 2px solid #b8541c;
   outline-offset: 2px;
 }

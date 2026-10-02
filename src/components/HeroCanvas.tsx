@@ -92,7 +92,7 @@ export const HeroCanvas: React.FC = () => {
     <div className="w-full h-full cursor-grab active:cursor-grabbing select-none relative">
       <Canvas
         dpr={dprRange}
-        camera={{ position: [0, 0, 4.5], fov: 38 }}
+        camera={{ position: [0, 0, 3.6], fov: 38 }}
         gl={{
           antialias: true,
           alpha: true,
@@ -105,23 +105,23 @@ export const HeroCanvas: React.FC = () => {
         <Suspense fallback={null}>
           <ambientLight intensity={0.75} />
           <directionalLight position={[5, 8, 5]} intensity={1.3} castShadow shadow-mapSize={[1024, 1024]} />
-          <directionalLight position={[-4, 3, -3]} intensity={0.45} color="#7dd3fc" />
+          <directionalLight position={[-4, 3, -3]} intensity={0.45} color="#fed7aa" />
           <directionalLight position={[0, -3, 3]} intensity={0.25} color="#e2e8f0" />
           <Environment preset="studio" />
 
-          {/* Model stays permanently locked in place, rotating around its own center */}
-          <group position={[0, 0, 0]}>
+          {/* Model */}
+          <group position={[0, 0, 0]} scale={0.95}>
             <Center>
               <ModelContent />
             </Center>
           </group>
 
           <ContactShadows
-            position={[0, -1.3, 0]}
-            opacity={0.28}
-            scale={5}
-            blur={2.2}
-            far={3.5}
+            position={[0, -1.5, 0]}
+            opacity={0.3}
+            scale={6.5}
+            blur={2.4}
+            far={4}
             color="#334155"
           />
 
@@ -131,12 +131,12 @@ export const HeroCanvas: React.FC = () => {
             enablePan={false}
             enableDamping={true}
             dampingFactor={0.06}
-            rotateSpeed={0.85}
+            rotateSpeed={1.85}
             target={[0, 0, 0]}
             maxPolarAngle={Math.PI * 0.85}
             minPolarAngle={Math.PI * 0.15}
             autoRotate={true}
-            autoRotateSpeed={0.65}
+            autoRotateSpeed={1.65}
           />
         </Suspense>
       </Canvas>

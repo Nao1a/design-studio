@@ -31,6 +31,17 @@ export interface TimelineItem {
   linkText?: string;
 }
 
+export interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  title: string;
+  bio: string;
+  specialties: string[];
+  isFounder: boolean;
+  avatar: string;
+}
+
 export interface SiteContent {
   meta: {
     studioName: string;
@@ -91,6 +102,12 @@ export interface SiteContent {
     stats: AchievementStat[];
     timeline: TimelineItem[];
   };
+  team: {
+    badge: string;
+    headline: string;
+    subheadline: string;
+    members: TeamMember[];
+  };
   contact: {
     badge: string;
     headline: string;
@@ -101,7 +118,7 @@ export interface SiteContent {
     address: string;
     labLocation: string;
     officeHours: string;
-    socials: { name: string; url: string; icon: 'Github' | 'Linkedin' | 'Twitter' | 'Mail' }[];
+    socials: { name: string; url: string; icon: 'Linkedin' | 'Mail' | 'Telegram' | 'Github' | 'Twitter' }[];
   };
   footer: {
     tagline: string;
@@ -123,7 +140,7 @@ export const content: SiteContent = {
       { label: "Overview", href: "#hero" },
       { label: "Mission & Vision", href: "#mission-vision" },
       { label: "Projects", href: "#projects" },
-      { label: "Achievements", href: "#achievements" },
+      { label: "Team", href: "#team" },
       { label: "Contact", href: "#contact" },
     ],
     ctaLabel: "Initiate Collaboration",
@@ -385,6 +402,225 @@ export const content: SiteContent = {
       },
     ],
   },
+  team: {
+    badge: 'The People Behind the Innovation',
+    headline: 'Meet the Team & Founders',
+    subheadline: 'A multidisciplinary collective of biomedical engineers, clinical researchers, and design thinkers building the future of healthcare technology at AAU.',
+    members: [
+      // — Founders (4) — Practicing Engineers
+      {
+        id: 'founder-1',
+        name: 'Eng. Aster Tadesse',
+        role: 'Co-Founder & Lab Director',
+        title: 'MSc, Biomedical Engineering',
+        bio: 'Practicing biomedical engineer with 12+ years designing patient-matched implants and leading device validation programs.',
+        specialties: ['Medical Devices', 'Implant Design'],
+        isFounder: true,
+        avatar: '',
+      },
+      {
+        id: 'founder-2',
+        name: 'Eng. Kassa Mengistu',
+        role: 'Co-Founder & Chief Engineer',
+        title: 'MSc, Mechanical Engineering',
+        bio: 'Senior mechanical engineer specializing in precision CNC, additive manufacturing, and bio-compatible material testing.',
+        specialties: ['Manufacturing', 'Biomaterials'],
+        isFounder: true,
+        avatar: '',
+      },
+      {
+        id: 'founder-3',
+        name: 'Eng. Hana Worku',
+        role: 'Co-Founder & Clinical Systems Lead',
+        title: 'BSc, Biomedical Engineering',
+        bio: 'Practicing engineer embedded in clinical environments, translating surgical needs into actionable device specifications.',
+        specialties: ['Clinical Systems', 'Regulatory'],
+        isFounder: true,
+        avatar: '',
+      },
+      {
+        id: 'founder-4',
+        name: 'Eng. Solomon Abera',
+        role: 'Co-Founder & CTO',
+        title: 'MSc, Mechatronics Engineering',
+        bio: 'Full-stack hardware engineer architecting embedded bio-sensing platforms and real-time telemetry systems.',
+        specialties: ['Embedded Systems', 'Mechatronics'],
+        isFounder: true,
+        avatar: '',
+      },
+      // — Core Members (17) — Students
+      {
+        id: 'member-1',
+        name: 'Selamawit Haile',
+        role: 'Research Student — Diagnostics',
+        title: 'MSc Candidate, Biomedical Eng.',
+        bio: '',
+        specialties: ['Microfluidics'],
+        isFounder: false,
+        avatar: '',
+      },
+      {
+        id: 'member-2',
+        name: 'Dawit Bekele',
+        role: 'Research Student — Cardiovascular',
+        title: 'MSc Candidate, Biomedical Eng.',
+        bio: '',
+        specialties: ['Biomaterials'],
+        isFounder: false,
+        avatar: '',
+      },
+      {
+        id: 'member-3',
+        name: 'Yonas Alemayehu',
+        role: 'Research Student — Robotics',
+        title: 'MSc Candidate, Mechanical Eng.',
+        bio: '',
+        specialties: ['Surgical Robotics'],
+        isFounder: false,
+        avatar: '',
+      },
+      {
+        id: 'member-4',
+        name: 'Michael Girma',
+        role: 'Research Student — Wearables',
+        title: 'MSc Candidate, Electrical Eng.',
+        bio: '',
+        specialties: ['Flexible Electronics'],
+        isFounder: false,
+        avatar: '',
+      },
+      {
+        id: 'member-5',
+        name: 'Lidiya Tekle',
+        role: 'Design & Prototyping',
+        title: 'BSc Student, Biomedical Eng.',
+        bio: '',
+        specialties: ['CAD/CAM'],
+        isFounder: false,
+        avatar: '',
+      },
+      {
+        id: 'member-6',
+        name: 'Bereket Assefa',
+        role: 'Simulation & Analysis',
+        title: 'MSc Candidate, Mechanical Eng.',
+        bio: '',
+        specialties: ['FEA'],
+        isFounder: false,
+        avatar: '',
+      },
+      {
+        id: 'member-7',
+        name: 'Meron Tadesse',
+        role: 'Firmware Development',
+        title: 'BSc Student, Electrical Eng.',
+        bio: '',
+        specialties: ['Embedded'],
+        isFounder: false,
+        avatar: '',
+      },
+      {
+        id: 'member-8',
+        name: 'Naomi Kebede',
+        role: 'Documentation & QA',
+        title: 'BSc Student, Biomedical Eng.',
+        bio: '',
+        specialties: ['ISO Standards'],
+        isFounder: false,
+        avatar: '',
+      },
+      {
+        id: 'member-9',
+        name: 'Tewodros Hailu',
+        role: 'Mechanical Design',
+        title: 'MSc Candidate, Mechanical Eng.',
+        bio: '',
+        specialties: ['SolidWorks'],
+        isFounder: false,
+        avatar: '',
+      },
+      {
+        id: 'member-10',
+        name: 'Rahel Gebre',
+        role: 'Materials Testing',
+        title: 'MSc Candidate, Materials Eng.',
+        bio: '',
+        specialties: ['Polymers'],
+        isFounder: false,
+        avatar: '',
+      },
+      {
+        id: 'member-11',
+        name: 'Abel Desta',
+        role: 'Signal Processing',
+        title: 'BSc Student, Electrical Eng.',
+        bio: '',
+        specialties: ['DSP'],
+        isFounder: false,
+        avatar: '',
+      },
+      {
+        id: 'member-12',
+        name: 'Tigist Mulugeta',
+        role: 'Clinical Data Assistant',
+        title: 'BSc Student, Biomedical Eng.',
+        bio: '',
+        specialties: ['Data Analysis'],
+        isFounder: false,
+        avatar: '',
+      },
+      {
+        id: 'member-13',
+        name: 'Henok Berhanu',
+        role: 'PCB & Electronics',
+        title: 'BSc Student, Electrical Eng.',
+        bio: '',
+        specialties: ['PCB Design'],
+        isFounder: false,
+        avatar: '',
+      },
+      {
+        id: 'member-14',
+        name: 'Bethlehem Assefa',
+        role: '3D Printing & Fabrication',
+        title: 'MSc Candidate, Mechanical Eng.',
+        bio: '',
+        specialties: ['Additive Mfg.'],
+        isFounder: false,
+        avatar: '',
+      },
+      {
+        id: 'member-15',
+        name: 'Fikirte Wolde',
+        role: 'Software & Edge AI',
+        title: 'BSc Student, Software Eng.',
+        bio: '',
+        specialties: ['ML/AI'],
+        isFounder: false,
+        avatar: '',
+      },
+      {
+        id: 'member-16',
+        name: 'Yared Solomon',
+        role: 'Testing & Validation',
+        title: 'BSc Student, Biomedical Eng.',
+        bio: '',
+        specialties: ['Quality'],
+        isFounder: false,
+        avatar: '',
+      },
+      {
+        id: 'member-17',
+        name: 'Eleni Negash',
+        role: 'Bioelectronics Research',
+        title: 'MSc Candidate, Electrical Eng.',
+        bio: '',
+        specialties: ['Sensors'],
+        isFounder: false,
+        avatar: '',
+      },
+    ],
+  },
   contact: {
     badge: "Direct Consultation",
     headline: "Let's Engineer the Next Medical Breakthrough",
@@ -396,10 +632,9 @@ export const content: SiteContent = {
     labLocation: "Biomedical Engineering Building, Wing C, Cleanroom Lab 304",
     officeHours: "Monday - Friday: 08:30 - 17:30 EAT",
     socials: [
-      { name: "GitHub", url: "https://github.com/aau-biomedical", icon: "Github" },
       { name: "LinkedIn", url: "https://linkedin.com/school/aau-biomedical", icon: "Linkedin" },
-      { name: "Twitter", url: "https://twitter.com/AAUBioDesign", icon: "Twitter" },
-      { name: "Email", url: "mailto:biomedical.studio@aau.edu.et", icon: "Mail" },
+      { name: "Gmail", url: "mailto:biomedical.studio@aau.edu.et", icon: "Mail" },
+      { name: "Telegram", url: "https://t.me/aaubiomedical", icon: "Telegram" },
     ],
   },
   footer: {
