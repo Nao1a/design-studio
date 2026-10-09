@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { content, Project } from '../data/content';
+import { Project } from '../data/content';
+import { useSiteData } from '../context/SiteDataContext';
 import { ProjectModal } from './ProjectModal';
 
 export const Projects: React.FC = () => {
+  const { siteContent, projects } = useSiteData();
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
-  const projects = content.projects.items;
 
   return (
     <section id="projects" className="relative py-20 lg:py-28 bg-[#f8fafc]">
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
         {/* Header */}
         <div className="max-w-2xl mb-12">
-          <p className="text-base font-medium text-sky-600 mb-3">
-            {content.projects.badge}
-          </p>
+          <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-white border border-slate-200/80 mb-4 shadow-xs">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-800">
+              {siteContent.projects?.badge || 'Research & Development'}
+            </p>
+          </div>
           <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight mb-4">
-            {content.projects.headline}
+            {siteContent.projects?.headline || "What We're Working On"}
           </h2>
           <p className="text-lg text-slate-500 leading-relaxed">
-            {content.projects.subheadline}
+            {siteContent.projects?.subheadline || 'Explore our active clinical pipelines and prototypes.'}
           </p>
         </div>
 
@@ -50,7 +53,9 @@ export const Projects: React.FC = () => {
                 {/* Content */}
                 <div className="p-5 sm:p-6 flex-1 flex flex-col">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-sm font-medium text-sky-600">{project.category}</span>
+                    <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-sky-50 text-sky-700 border border-sky-100/80">
+                      {project.category}
+                    </span>
                     <span className="text-sm text-slate-400">{project.status}</span>
                   </div>
 

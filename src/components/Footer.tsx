@@ -1,9 +1,10 @@
 import React from 'react';
 import { ArrowUp } from 'lucide-react';
-import { content } from '../data/content';
+import { useSiteData } from '../context/SiteDataContext';
 import studioLogo from '../assets/logo.jpeg';
 
 export const Footer: React.FC = () => {
+  const { siteContent } = useSiteData();
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
@@ -20,16 +21,16 @@ export const Footer: React.FC = () => {
                 />
               </div>
               <span className="font-display font-bold text-lg text-slate-900">
-                {content.meta.studioName}
+                {siteContent.meta?.studioName}
               </span>
             </div>
             <p className="text-sm text-slate-500 max-w-sm">
-              {content.footer.tagline}
+              {siteContent.footer?.tagline}
             </p>
           </div>
 
           <div className="flex flex-wrap gap-6 text-sm font-medium text-slate-600">
-            {content.navigation.links.map((link) => (
+            {siteContent.navigation?.links?.map((link) => (
               <a key={link.label} href={link.href} className="hover:text-sky-600 transition-colors">
                 {link.label}
               </a>
@@ -46,8 +47,8 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400">
-          <span>{content.footer.copyright}</span>
-          <span>{content.footer.affiliation}</span>
+          <span>{siteContent.footer?.copyright}</span>
+          <span>{siteContent.footer?.affiliation}</span>
         </div>
       </div>
     </footer>

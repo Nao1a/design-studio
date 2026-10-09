@@ -105,7 +105,7 @@ export const HeroCanvas: React.FC = () => {
         <Suspense fallback={null}>
           <ambientLight intensity={0.75} />
           <directionalLight position={[5, 8, 5]} intensity={1.3} castShadow shadow-mapSize={[1024, 1024]} />
-          <directionalLight position={[-4, 3, -3]} intensity={0.45} color="#fed7aa" />
+          <directionalLight position={[-4, 3, -3]} intensity={0.45} color="#7cd4fd" />
           <directionalLight position={[0, -3, 3]} intensity={0.25} color="#e2e8f0" />
           <Environment preset="studio" />
 

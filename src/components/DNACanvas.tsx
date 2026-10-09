@@ -133,11 +133,11 @@ function SymmetricalHelixFallback({ leftX = -6.5, rightX = 6.5 }: SymmetricalHel
       const y = (i / 28) * 3 - 1.5;
       items.push({
         pos: [Math.cos(t) * 0.5, y, Math.sin(t) * 0.5],
-        color: i % 2 === 0 ? '#dc9255' : '#b8541c',
+        color: i % 2 === 0 ? '#36bfed' : '#026aa2',
       });
       items.push({
         pos: [Math.cos(t + Math.PI) * 0.5, y, Math.sin(t + Math.PI) * 0.5],
-        color: i % 2 === 0 ? '#b8541c' : '#dc9255',
+        color: i % 2 === 0 ? '#026aa2' : '#36bfed',
       });
     }
     return items;
@@ -231,11 +231,11 @@ export const DNADualCanvas: React.FC<DNADualCanvasProps> = ({
         style={{ width: '100%', height: '100%' }}
       >
         <Suspense fallback={null}>
-          {/* Bright, radiant studio lighting with warm copper bounce */}
+          {/* Bright, radiant studio lighting with clinical blue bounce */}
           <ambientLight intensity={1.4} />
-          <hemisphereLight color="#ffffff" groundColor="#c86f32" intensity={1.3} />
+          <hemisphereLight color="#ffffff" groundColor="#026aa2" intensity={1.3} />
           <directionalLight position={[6, 12, 8]} intensity={2.0} color="#ffffff" />
-          <directionalLight position={[-6, 6, 4]} intensity={1.3} color="#fed7aa" />
+          <directionalLight position={[-6, 6, 4]} intensity={1.3} color="#7cd4fd" />
           <pointLight position={[0, 0, 10]} intensity={0.7} color="#ffffff" />
 
           {/* Cached studio environment for radiant metallic reflections */}

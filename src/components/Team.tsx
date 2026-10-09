@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { User, X } from 'lucide-react';
-import { content, TeamMember } from '../data/content';
+import { TeamMember } from '../data/content';
+import { useSiteData } from '../context/SiteDataContext';
 
 /** Get initials from a name */
 const getInitials = (name: string) => {
@@ -38,7 +39,7 @@ const FounderCard: React.FC<{ member: TeamMember; index: number }> = ({ member, 
       {member.bio && (
         <p className="text-[13px] text-slate-500 leading-relaxed mt-4 line-clamp-2">{member.bio}</p>
       )}
-      <div className="absolute bottom-0 left-4 right-4 h-[2px] rounded-full bg-slate-900 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+      <div className="absolute bottom-0 left-4 right-4 h-[2px] rounded-full bg-sky-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
     </motion.div>
   );
 };
@@ -78,7 +79,7 @@ const MemberDetail: React.FC<{ member: TeamMember; onClose: () => void }> = ({ m
       {member.specialties.length > 0 && (
         <div className="flex flex-wrap gap-1.5 mt-4">
           {member.specialties.map((s) => (
-            <span key={s} className="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-slate-50 text-slate-500 border border-slate-200/60">
+            <span key={s} className="text-[11px] font-medium px-2.5 py-0.5 rounded-md bg-sky-50 text-sky-700 border border-sky-100/80">
               {s}
             </span>
           ))}
@@ -89,8 +90,9 @@ const MemberDetail: React.FC<{ member: TeamMember; onClose: () => void }> = ({ m
 };
 
 export const Team: React.FC = () => {
-  const founders = content.team.members.filter((m) => m.isFounder);
-  const members = content.team.members.filter((m) => !m.isFounder);
+  const { siteContent, teamMembers } = useSiteData();
+  const founders = teamMembers.filter((m) => m.isFounder);
+  const members = teamMembers.filter((m) => !m.isFounder);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const selectedMember = members.find((m) => m.id === selectedId) || null;
 
@@ -99,15 +101,11 @@ export const Team: React.FC = () => {
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
         {/* Header */}
         <div className="max-w-2xl mb-12">
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.35 }}
-            className="text-base font-medium text-sky-600 mb-3"
-          >
-            {content.team.badge}
-          </motion.p>
+          <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-white border border-slate-200/80 mb-4 shadow-xs">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-800">
+              {siteContent.team?.badge || 'The People Behind the Innovation'}
+            </p>
+          </div>
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -115,7 +113,7 @@ export const Team: React.FC = () => {
             transition={{ duration: 0.4, delay: 0.04 }}
             className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight mb-4"
           >
-            {content.team.headline}
+            {siteContent.team?.headline || 'Meet the Team & Founders'}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -124,7 +122,7 @@ export const Team: React.FC = () => {
             transition={{ duration: 0.4, delay: 0.08 }}
             className="text-lg text-slate-500 leading-relaxed"
           >
-            {content.team.subheadline}
+            {siteContent.team?.subheadline || 'A multidisciplinary collective of biomedical engineers.'}
           </motion.p>
         </div>
 

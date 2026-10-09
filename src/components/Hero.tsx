@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
-import { content } from '../data/content';
-import { HeroCanvas } from './HeroCanvas';
+import { useSiteData } from '../context/SiteDataContext';
+const HeroCanvas = React.lazy(() => import('./HeroCanvas').then((m) => ({ default: m.HeroCanvas })));
 
 export const Hero: React.FC = () => {
+  const { siteContent } = useSiteData();
   return (
     <section
       id="hero"
@@ -20,20 +21,22 @@ export const Hero: React.FC = () => {
             className="lg:col-span-7 flex flex-col justify-center"
           >
             {/* Studio Subtitle */}
-            <p className="text-sm font-semibold tracking-wider uppercase text-sky-600 mb-4">
-              {content.meta.studioName}
-            </p>
+            <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-white border border-slate-200/80 mb-5 self-start shadow-xs">
+              <p className="text-xs font-semibold tracking-wider uppercase text-slate-800">
+                {siteContent.meta.studioName}
+              </p>
+            </div>
 
             {/* Headline */}
             <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-slate-900 leading-[1.12] mb-6">
-              {content.hero.headlineStart}{' '}
-              <span className="text-gradient">{content.hero.headlineHighlight}</span>{' '}
-              {content.hero.headlineEnd}
+              {siteContent.hero.headlineStart}{' '}
+              <span className="text-gradient">{siteContent.hero.headlineHighlight}</span>{' '}
+              {siteContent.hero.headlineEnd}
             </h1>
 
             {/* Intro */}
             <p className="text-lg text-slate-600 leading-relaxed mb-8 max-w-xl">
-              {content.hero.intro}
+              {siteContent.hero.intro}
             </p>
 
             {/* Action Buttons */}
@@ -42,14 +45,14 @@ export const Hero: React.FC = () => {
                 href="#projects"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-slate-900 text-white font-medium text-base hover:bg-slate-800 transition-all shadow-md hover:shadow-lg active:translate-y-0"
               >
-                {content.hero.primaryCta}
+                {siteContent.hero.primaryCta}
                 <ChevronRight className="w-4 h-4 opacity-60" />
               </a>
               <a
                 href="#mission-vision"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-slate-700 font-medium text-base border border-slate-300 hover:border-slate-400 hover:bg-white transition-all"
               >
-                {content.hero.secondaryCta}
+                {siteContent.hero.secondaryCta}
               </a>
             </div>
           </motion.div>
@@ -61,7 +64,15 @@ export const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 w-full h-[460px] sm:h-[540px] lg:h-[620px] relative flex items-center justify-center"
           >
-            <HeroCanvas />
+            <React.Suspense
+              fallback={
+                <div className="w-full h-full flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full border-2 border-slate-200 border-t-slate-800 animate-spin" />
+                </div>
+              }
+            >
+              <HeroCanvas />
+            </React.Suspense>
           </motion.div>
         </div>
       </div>

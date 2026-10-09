@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Trophy, BookOpen, Handshake, FileCheck, Award } from 'lucide-react';
-import { content, TimelineItem, AchievementStat } from '../data/content';
+import { useSiteData } from '../context/SiteDataContext';
 
 const AnimatedCounter: React.FC<{ value: number; suffix: string }> = ({ value, suffix }) => {
   const [count, setCount] = useState(0);
@@ -39,25 +39,34 @@ const categoryIconMap: Record<string, React.FC<{ className?: string }>> = {
 };
 
 export const Achievements: React.FC = () => {
+  const { siteContent } = useSiteData();
+  const achievementsData = siteContent?.achievements || {
+    badge: 'Proven Milestones',
+    headline: 'Quantifiable Clinical & Research Impact',
+    subheadline: 'Every prototype is backed by rigorous bench validation.',
+    stats: [],
+    timeline: [],
+  };
+
   return (
     <section id="achievements" className="relative py-20 lg:py-28 bg-white">
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
         {/* Header */}
         <div className="max-w-2xl mb-14">
           <p className="text-base font-medium text-sky-600 mb-3">
-            {content.achievements.badge}
+            {achievementsData.badge}
           </p>
           <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight mb-4">
-            {content.achievements.headline}
+            {achievementsData.headline}
           </h2>
           <p className="text-lg text-slate-500 leading-relaxed">
-            {content.achievements.subheadline}
+            {achievementsData.subheadline}
           </p>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-20">
-          {content.achievements.stats.map((stat: AchievementStat, idx: number) => (
+          {achievementsData.stats?.map((stat: any, idx: number) => (
             <motion.div
               key={stat.id}
               initial={{ opacity: 0, y: 16 }}
@@ -84,7 +93,7 @@ export const Achievements: React.FC = () => {
           </h3>
 
           <div className="relative border-l-2 border-slate-200 pl-8 space-y-7 ml-3">
-            {content.achievements.timeline.map((item: TimelineItem, idx: number) => {
+            {achievementsData.timeline?.map((item: any, idx: number) => {
               const IconComp = categoryIconMap[item.category] || Award;
               return (
                 <motion.div

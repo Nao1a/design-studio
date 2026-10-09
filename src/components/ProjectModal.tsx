@@ -139,7 +139,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 {project.metrics.map((m, i) => (
                   <div
                     key={i}
-                    className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-center"
+                    className="p-3 rounded-xl bg-sky-50/40 border border-sky-100 text-center"
                   >
                     <span className="block font-mono text-[10px] sm:text-[11px] text-slate-500 uppercase tracking-wider">
                       {m.label}
@@ -158,7 +158,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 {project.tags.map((tag, i) => (
                   <span
                     key={i}
-                    className="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-medium"
+                    className="text-xs px-2.5 py-1 rounded-md bg-sky-50 text-sky-800 border border-sky-100 font-medium"
                   >
                     {tag}
                   </span>
